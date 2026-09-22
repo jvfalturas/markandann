@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Once Upon a Time · Wedding RSVP</title>
+  <title>Mark & Ann RSVP</title>
+  <link rel="icon" type="image/png" href="images/m&a.png">
+
   <!-- Google Fonts: elegant typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,184 +15,212 @@
 <body>
 
   <!-- ========== NAVIGATION ========== -->
-  <header class="nav-wrapper">
-    <nav class="nav-container" aria-label="Main navigation">
-      <a href="#home" class="nav-logo">E &amp; J</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#story" class="nav-link">Our Story</a></li>
-        <li><a href="#details" class="nav-link">Details</a></li>
-        <li><a href="#dresscode" class="nav-link">Dress Code</a></li>
-        <li><a href="#gifts" class="nav-link">Gifts</a></li>
-        <li><a href="#rsvp" class="nav-link">RSVP</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="loader-overlay" id="loader">
+    <div class="loader-initials">A & J</div>
+    <div class="loader-ring"></div>
+    <div class="loader-heart">❤️</div>
+  </div>
 
-  <!-- ========== FLOATING MUSIC BUTTON ========== -->
-  <button class="music-btn" id="musicBtn" aria-label="Toggle background music">
-    <span class="music-icon" id="musicIcon">♪</span>
-  </button>
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav-bar">
+    <a href="#home" class="nav-logo">A & J</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#countdown">Countdown</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#dresscode">Dress Code</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+      <li><a href="#gifts">Gifts</a></li>
+    </ul>
+  </nav>
 
-  <!-- ========== HERO / OPENING ========== -->
+  <!-- ========== HERO ========== -->
   <section id="home" class="hero">
-    <!-- decorative floating particles container -->
-    <div class="particles" id="particles"></div>
-    <div class="hero-overlay"></div>
+    <div class="petal" style="top:10%; left:5%; animation-delay:0s;"></div>
+    <div class="petal" style="top:20%; left:85%; animation-delay:3s; width:8px; height:8px;"></div>
+    <div class="petal" style="top:50%; left:15%; animation-delay:6s; width:16px; height:16px;"></div>
+    <div class="petal" style="top:70%; left:75%; animation-delay:2s; width:10px; height:10px;"></div>
+    <div class="petal" style="top:30%; left:45%; animation-delay:9s; width:14px; height:14px;"></div>
     <div class="hero-content">
-      <p class="hero-once">Once Upon a Time...</p>
       <h1 class="hero-names">
-        <span class="name-groom">Edward</span>
-        <span class="ampersand">&amp;</span>
-        <span class="name-bride">Juliet</span>
+        Alexander
+        <span class="hero-amp">&</span>
+        Jasmine
       </h1>
-      <p class="hero-sub">are getting married</p>
-      <p class="hero-date">June 20, 2026 · 4:00 PM</p>
-      <a href="#story" class="btn btn-hero" id="openStoryBtn">Open Our Story</a>
+      <p class="hero-sub">Are Getting Married</p>
+      <div class="hero-date">December 18, 2026</div>
     </div>
-    <div class="hero-scroll-hint">⌄</div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <span>↓</span>
+    </div>
   </section>
 
   <!-- ========== COUNTDOWN ========== -->
-  <section class="countdown-section section-paper">
-    <div class="container fade-up">
-      <h2 class="section-title">Our Fairytale Begins In...</h2>
-      <div class="countdown-grid" id="countdown">
-        <div class="countdown-item"><span class="countdown-number" id="days">00</span><span class="countdown-label">Days</span></div>
-        <div class="countdown-item"><span class="countdown-number" id="hours">00</span><span class="countdown-label">Hours</span></div>
-        <div class="countdown-item"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">Minutes</span></div>
-        <div class="countdown-item"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">Seconds</span></div>
+  <section id="countdown" class="countdown-section">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Counting Down to Forever</h2>
+      <p class="section-sub animate-on-scroll">Every second brings us closer to our forever.</p>
+      <div class="countdown-grid" id="countdownGrid">
+        <div class="countdown-card"><span class="countdown-number" id="days">00</span><div class="countdown-label">Days</div></div>
+        <div class="countdown-card"><span class="countdown-number" id="hours">00</span><div class="countdown-label">Hours</div></div>
+        <div class="countdown-card"><span class="countdown-number" id="minutes">00</span><div class="countdown-label">Minutes</div></div>
+        <div class="countdown-card"><span class="countdown-number" id="seconds">00</span><div class="countdown-label">Seconds</div></div>
       </div>
-      <p class="countdown-message" id="countdownMessage"></p>
+      <div class="countdown-message" id="countdownMessage"></div>
     </div>
   </section>
 
   <!-- ========== OUR STORY ========== -->
   <section id="story" class="story-section">
     <div class="container">
-      <h2 class="section-title fade-up">Our Story</h2>
+      <h2 class="section-title animate-on-scroll">Our Story</h2>
+      <div class="gold-divider animate-on-scroll"></div>
       <div class="story-grid">
         <!-- His Story -->
-        <div class="story-card story-card--his fade-left">
-          <div class="story-icon">🌿</div>
-          <h3 class="story-heading">His Story</h3>
-          <p class="story-text">
-            I never expected that an ordinary day would lead me to the person who would become my greatest adventure. 
-            From the moment I saw her, the world felt softer, brighter, and full of possibilities. 
-            Every laugh, every quiet moment, every step we took together wrote a new line in our story.
+        <article class="story-card his animate-on-scroll animate-left">
+          <h3><span class="story-icon">⚙️</span> His Story</h3>
+          <p>
+            I still remember the first time I saw her. I was at a hotel for a conference, 
+            and she was behind the reception desk—poised, warm, and utterly captivating. 
+            I’m used to blueprints, tolerances, and things that make sense. But she was 
+            a beautiful equation I couldn’t solve. I fumbled my room key, and she smiled. 
+            That smile? It recalibrated my entire world. From that day, every precision 
+            in my life found its purpose: to build a future with her.
           </p>
-          <p class="story-signature">— Edward</p>
-        </div>
+        </article>
         <!-- Her Story -->
-        <div class="story-card story-card--hers fade-right">
-          <div class="story-icon">🌸</div>
-          <h3 class="story-heading">Her Story</h3>
-          <p class="story-text">
-            Some stories begin with a grand adventure. Ours began with a simple moment that slowly became something beautiful. 
-            He was kind, patient, and made me feel like I was home. 
-            Now, as we turn the page to our forever, I can’t wait to write the rest with him.
+        <article class="story-card her animate-on-scroll animate-right">
+          <h3><span class="story-icon">🔑</span> Her Story</h3>
+          <p>
+            Working at the front desk, you meet all kinds of people—but he was different. 
+            He walked in with a rolled-up blueprint under his arm and a quiet confidence. 
+            When he asked for a late checkout because he was “working on a project,” 
+            I couldn’t help but smile. He returned the next week, then the next. 
+            One day, he brought me a tiny brass gear he’d machined himself. 
+            “For you,” he said. “It’s a small piece of my heart.” 
+            I still carry it everywhere. He is my home, my five-star forever.
           </p>
-          <p class="story-signature">— Juliet</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRENUP GALLERY (FILM STRIP) ========== -->
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Prenup Gallery</h2>
+      <p class="section-sub animate-on-scroll">Moments captured in time, framed in love.</p>
+      <div class="film-strip animate-on-scroll animate-scale">
+        <div class="carousel-container" id="carouselContainer">
+          <div class="carousel-slides" id="carouselSlides">
+            <!-- Slides inserted by JS -->
+          </div>
+          <button class="carousel-btn prev" id="prevBtn" aria-label="Previous image">‹</button>
+          <button class="carousel-btn next" id="nextBtn" aria-label="Next image">›</button>
         </div>
+        <div class="carousel-dots" id="carouselDots"></div>
       </div>
     </div>
   </section>
 
   <!-- ========== WEDDING DETAILS ========== -->
-  <section id="details" class="details-section section-paper">
-    <div class="container fade-up">
-      <h2 class="section-title">Wedding Details</h2>
-      <div class="details-card">
-        <div class="details-icon">💍</div>
-        <h3 class="details-title">Wedding Ceremony</h3>
-        <div class="details-info">
-          <p><strong>Date:</strong> Saturday, June 20, 2026</p>
-          <p><strong>Time:</strong> 4:00 PM – 10:00 PM</p>
-          <p><strong>Venue:</strong> The Enchanted Garden Estate</p>
-          <p><strong>Address:</strong> 123 Fairytale Lane, Rosewood Valley, CA 90210</p>
+  <section id="details" class="details-section">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Wedding Details</h2>
+      <div class="gold-divider animate-on-scroll"></div>
+      <div class="details-grid">
+        <div class="detail-card animate-on-scroll animate-left">
+          <div class="detail-icon">📅</div>
+          <h4>Date</h4>
+          <p>December 18, 2026<br>Friday</p>
         </div>
-        <a href="https://maps.google.com/?q=Enchanted+Garden+Estate" target="_blank" rel="noopener" class="btn btn-details">View Location</a>
+        <div class="detail-card animate-on-scroll">
+          <div class="detail-icon">💍</div>
+          <h4>Ceremony</h4>
+          <p>St. Augustine Cathedral<br>3:00 PM</p>
+        </div>
+        <div class="detail-card animate-on-scroll">
+          <div class="detail-icon">🥂</div>
+          <h4>Reception</h4>
+          <p>The Grand Ballroom<br>6:00 PM</p>
+        </div>
+        <div class="detail-card animate-on-scroll animate-right">
+          <div class="detail-icon">📍</div>
+          <h4>Location</h4>
+          <p>1234 Love Avenue<br>Manila, Philippines</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ========== DRESS CODE ========== -->
   <section id="dresscode" class="dresscode-section">
-    <div class="container fade-up">
-      <h2 class="section-title">Dress Code</h2>
-      <p class="dresscode-subtitle">Formal / Garden Formal</p>
-      <div class="dresscode-content">
-        <p class="dresscode-text">
-          We invite you to dress in elegant garden attire. Think soft, romantic, and airy fabrics. 
-          Below is our color palette — we would love for you to complement it.
-        </p>
-        <div class="palette">
-          <div class="swatch" style="background:#f7e7d3;"><span>Champagne</span></div>
-          <div class="swatch" style="background:#d9b8b3;"><span>Dusty Rose</span></div>
-          <div class="swatch" style="background:#a8b89a;"><span>Sage Green</span></div>
-          <div class="swatch" style="background:#f5f0e6;"><span>Ivory</span></div>
-        </div>
-        <p class="dresscode-note">Optional: Add a touch of gold or soft pink for a magical accent.</p>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Dress Code</h2>
+      <p class="section-sub animate-on-scroll">Formal / Elegant Attire</p>
+      <div class="palette-row animate-on-scroll">
+        <div class="swatch" style="background: #F5EBDD;" title="Champagne"></div>
+        <div class="swatch" style="background: #CFA6A6;" title="Dusty Rose"></div>
+        <div class="swatch" style="background: #A9B5A0;" title="Sage Green"></div>
+        <div class="swatch" style="background: #1C1C1C;" title="Black"></div>
+        <div class="swatch" style="background: #C6A15B;" title="Warm Gold"></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ========== GIFTS / REGISTRY ========== -->
-  <section id="gifts" class="gifts-section section-paper">
-    <div class="container fade-up">
-      <h2 class="section-title">Your Presence is Our Greatest Gift</h2>
-      <p class="gifts-text">
-        Your love and presence mean the world to us. If you wish to honor us with a gift, 
-        we have provided a convenient way to send your blessings.
-      </p>
-      <div class="gift-card">
-        <div class="qr-placeholder">
-          <!-- QR CODE IMAGE: Replace with your own QR code -->
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23f5f0e6'/%3E%3Ctext x='90' y='95' font-family='sans-serif' font-size='14' fill='%236b5e4b' text-anchor='middle'%3EQR CODE%3C/text%3E%3C/svg%3E" alt="QR code placeholder" class="qr-img">
-        </div>
-        <p class="qr-label">Scan to send your gift</p>
-        <div class="gift-methods">
-          <p><strong>GCash:</strong> 0912 345 6789 (Placeholder)</p>
-          <p><strong>Bank:</strong> BDO · Account No. 1234 5678 90 (Placeholder)</p>
-          <p><strong>Other:</strong> PayPal.me/yourlink (Placeholder)</p>
-        </div>
+      <div class="animate-on-scroll" style="text-align:center; max-width:700px; margin:0 auto;">
+        <p><strong>Gentlemen:</strong> Formal Barong / Suit / Long-sleeve formal attire</p>
+        <p style="margin-top:0.8rem;"><strong>Ladies:</strong> Long formal dress / Elegant gown</p>
+        <div class="dresscode-note">Please avoid wearing white to allow the bride to shine.</div>
       </div>
     </div>
   </section>
 
   <!-- ========== RSVP ========== -->
   <section id="rsvp" class="rsvp-section">
-    <div class="container fade-up">
-      <h2 class="section-title">Will You Join Our Fairytale?</h2>
-      <p class="rsvp-text">Kindly confirm your attendance by filling out the form below.</p>
-      <!-- GOOGLE FORM EMBED: Replace the src with your own Google Form URL -->
-      <div class="rsvp-iframe-wrapper">
-        <iframe 
-          src="https://docs.google.com/forms/d/e/1FAIpQLSfPLACEHOLDER/viewform?embedded=true" 
-          width="100%" 
-          height="800" 
-          frameborder="0" 
-          marginheight="0" 
-          marginwidth="0"
-          title="RSVP Form">
-          Loading…
-        </iframe>
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">We'd Love to Celebrate With You</h2>
+      <p class="section-sub animate-on-scroll">Kindly confirm your attendance by December 1, 2026.</p>
+      <div class="rsvp-iframe-wrapper animate-on-scroll animate-scale">
+        <iframe
+          src="YOUR_GOOGLE_FORM_EMBED_URL_HERE"
+          title="RSVP Form"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GIFT SECTION ========== -->
+  <section id="gifts" class="gift-section">
+    <div class="container" style="text-align:center;">
+      <h2 class="section-title animate-on-scroll">Your Presence Is Our Present</h2>
+      <p class="section-sub animate-on-scroll" style="max-width:600px;">
+        Your love and laughter are the greatest gifts we could ask for. 
+        Should you wish to bless us further, a simple QR code is provided below.
+      </p>
+      <div class="qr-container animate-on-scroll animate-scale">
+        <img src="assets/images/gift-qr.png" alt="Gift QR Code" loading="lazy">
+        <div class="qr-label">[GCash / Bank / Gift Registry]</div>
       </div>
     </div>
   </section>
 
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
-    <div class="container">
-      <p class="footer-quote">And they lived happily ever after...</p>
-      <p class="footer-names">Edward &amp; Juliet</p>
-      <p class="footer-date">June 20, 2026</p>
-      <div class="footer-sparkle">✦</div>
-    </div>
+    <div class="footer-names">Alexander & Jasmine</div>
+    <div class="footer-date">December 18, 2026</div>
+    <div class="gold-divider" style="background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.5rem auto; width: 120px;"></div>
+    <div class="footer-quote">"Forever starts here. ❤️"</div>
   </footer>
+
+  <!-- ========== FLOATING MUSIC BUTTON ========== -->
+  <button class="music-btn" id="musicBtn" aria-label="Toggle music">♪</button>
+  <audio id="bgMusic" loop preload="none">
+    <source src="assets/music/wedding-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script src="script.js"></script>
 </body>
