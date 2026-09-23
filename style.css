@@ -354,6 +354,11 @@ section { padding: var(--space-2xl) 0; position: relative; }
 .nav-toggle.open .bar:nth-child(2) { opacity: 0; }
 .nav-toggle.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+.nav-logo img {
+  width: 70px;
+  height: auto;
+  display: block;
+}
 /* -----------------------------------------------------
    7. MUSIC TOGGLE
 ----------------------------------------------------- */
