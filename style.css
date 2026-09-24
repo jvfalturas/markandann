@@ -184,7 +184,7 @@ section { padding: var(--space-2xl) 0; position: relative; }
 /* -----------------------------------------------------
    5. LOADING SCREEN
 ----------------------------------------------------- */
-#loading-screen {
+/* #loading-screen {
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -263,7 +263,498 @@ section { padding: var(--space-2xl) 0; position: relative; }
 
 @media (prefers-reduced-motion: reduce) {
   .ring-blueprint, .ring-gold { animation: none; }
+} */
+
+
+/* =====================================================
+   ENVELOPE INTRO — letter inside, photo-inspired
+===================================================== */
+@media (min-width: 769px) {
+  .envelope {
+    width: 250px;   /* fixed size sa PC */
+  }
 }
+
+.envelope-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background:
+    radial-gradient(ellipse at center, #232220 0%, #171614 60%, #0F0E0D 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    opacity 1.2s var(--ease-out) 3.2s,
+    visibility 1.2s var(--ease-out) 3.2s;
+  overflow: hidden;
+}
+
+.envelope-intro.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-intro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(198,161,91,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198,161,91,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  pointer-events: none;
+}
+
+/* =====================================================
+   SPOTLIGHT
+===================================================== */
+
+.envelope-intro::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 253, 248, 0.12) 30%,
+    rgba(198, 161, 91, 0.06) 55%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+  animation: spotlight-breathe 4s ease-in-out infinite;
+  transition:
+    transform 2s var(--ease-out) 2.8s,
+    opacity 1.8s var(--ease-out) 3s,
+    background 0.6s var(--ease-out) 2.8s;
+}
+
+@keyframes spotlight-breathe {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+.envelope-intro.opened::after {
+  animation: none;
+  transform: translate(-50%, -50%) scale(3);
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 253, 248, 0.5) 25%,
+    rgba(198, 161, 91, 0.2) 50%,
+    transparent 75%
+  );
+}
+
+/* =====================================================
+   ENVELOPE SCENE
+===================================================== */
+
+.envelope-scene {
+  position: relative;
+  perspective: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  z-index: 2;
+  opacity: 0;
+  animation: scene-fade-in 1.6s var(--ease-out) 0.3s forwards;
+}
+
+@keyframes scene-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================
+   ENVELOPE
+===================================================== */
+
+.envelope {
+  position: relative;
+  width: min(90vw, 480px);
+  aspect-ratio: 1.5 / 1;
+  transform-style: preserve-3d;
+  animation: envelope-float 5s ease-in-out infinite;
+  transition:
+    transform 1.4s var(--ease-out) 2.8s,
+    filter 1.4s var(--ease-out) 2.8s;
+  filter:
+    drop-shadow(0 0 20px rgba(255, 255, 255, 0.15))
+    drop-shadow(0 0 40px rgba(198, 161, 91, 0.2));
+}
+
+@keyframes envelope-float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-10px) rotate(1deg); }
+}
+
+.envelope-intro.opened .envelope {
+  animation: none;
+  transform: scale(1.06);
+  filter:
+    drop-shadow(0 0 40px rgba(255, 255, 255, 0.6))
+    drop-shadow(0 0 80px rgba(255, 253, 248, 0.4))
+    drop-shadow(0 0 120px rgba(198, 161, 91, 0.35));
+}
+
+/* =====================================================
+   ENVELOPE BACK (inner pocket — dark maroon/charcoal)
+===================================================== */
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #3A2A2A, #2A1F1F);
+  border-radius: 6px;
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(198,161,91,0.2);
+  z-index: 0;
+}
+
+/* =====================================================
+   LETTER — naa sa SULOD, makita nimo ang text
+===================================================== */
+
+.envelope-letter {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 8%;
+  height: 80%;
+
+  background: linear-gradient(160deg, #FBF3E6, #F5EBDD);
+  border-radius: 3px;
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 🆕 Initial: visible na daan */
+  z-index: 2;
+  transform: translateY(-12%);
+  opacity: 1;
+
+  transition:
+    transform 1.8s var(--ease-out) 1.6s,
+    z-index 0s linear 1.6s;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.2),
+    0 0 20px rgba(255, 253, 248, 0.2);
+}
+
+.envelope-intro.opened .envelope-letter {
+  transform: translateY(-55%) scale(1.02);
+  z-index: 10;
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.25),
+    0 0 60px rgba(255, 255, 255, 0.5);
+}
+
+.letter-content {
+  color: var(--color-charcoal);
+  opacity: 1;
+  /* animation: letter-content-fade 1s var(--ease-out) 2.4s forwards; */
+}
+
+/* @keyframes letter-content-fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+} */
+
+.letter-eyebrow {
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.letter-names {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+.letter-names .amp {
+  color: var(--color-gold);
+  font-style: normal;
+  margin: 0 0.1em;
+}
+
+.letter-subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text-soft);
+  margin-bottom: 0.5rem;
+}
+
+.letter-divider {
+  width: 36px;
+  height: 1px;
+  background: var(--color-gold);
+  margin: 0.5rem auto;
+}
+
+.letter-date {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--color-charcoal);
+}
+
+/* =====================================================
+   FRONT POCKET — LEFT + RIGHT triangles (semi-transparent)
+===================================================== */
+
+/* Left triangle — semi-transparent */
+.envelope-front-left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 85%;
+  background: linear-gradient(135deg, #3D2E2E, #2A1F1F);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  z-index: 3;
+  border-radius: 6px 0 0 6px;
+  box-shadow: inset -2px 0 8px rgba(0,0,0,0.2);
+}
+
+/* Right triangle — tip sa TOP-RIGHT, base sa bottom */
+.envelope-front-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  height: 85%;
+  background: linear-gradient(225deg, #3D2E2E, #2A1F1F);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  z-index: 3;
+  border-radius: 0 6px 6px 0;
+  box-shadow: inset 2px 0 8px rgba(0,0,0,0.2);
+}
+
+/* =====================================================
+   TOP FLAP — mo-open pataas, magpabilin nga open
+===================================================== */
+
+.envelope-flap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 62%;
+  background: linear-gradient(180deg, #3D2E2E, #2A1F1F);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-radius: 6px 6px 0 0;
+  transform-origin: top center;
+
+  /* 🆕 INITIAL: slightly open (-15deg) */
+  transform: rotateX(-25deg);
+
+  transition:
+    transform 1.6s cubic-bezier(0.68, -0.15, 0.27, 1.15),
+    box-shadow 0.6s var(--ease-out);
+  z-index: 5;
+  box-shadow:
+    inset 0 -8px 20px rgba(0,0,0,0.3),
+    0 0 0 rgba(255, 255, 255, 0);
+  backface-visibility: hidden;
+}
+
+/* Inig-open — flap mo-rotate 180deg UG MAGPABILIN */
+.envelope-intro.opened .envelope-flap {
+  transform: rotateX(-180deg);
+  z-index: 2;
+  box-shadow:
+    inset 0 -8px 20px rgba(0,0,0,0.3),
+    0 0 60px rgba(255, 255, 255, 0.5);
+}
+
+.flap-inner {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #2A1F1F, #1F1616);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  opacity: 0.4;
+}
+
+/* =====================================================
+   BOTTOM FLAP — triangle nga naka-cover sa ubos
+===================================================== */
+
+.envelope-flap-bottom {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 50%;
+  background: linear-gradient(0deg, #3D2E2E, #2A1F1F);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  border-radius: 0 0 6px 6px;
+  z-index: 4;
+  box-shadow: inset 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* =====================================================
+   WAX SEAL
+===================================================== */
+
+.envelope-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #D4AF6E, #C6A15B 45%, #8A6B35 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 14px rgba(0,0,0,0.4),
+    inset 0 0 8px rgba(0,0,0,0.25),
+    0 0 0 rgba(255, 255, 255, 0);
+  z-index: 6;
+  transition:
+    transform 0.9s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.7s var(--ease-out) 0.3s,
+    box-shadow 0.6s var(--ease-out);
+  transform-origin: center;
+  animation: seal-pulse 3s ease-in-out infinite;
+}
+
+@keyframes seal-pulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 14px rgba(0,0,0,0.4),
+      inset 0 0 8px rgba(0,0,0,0.25),
+      0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow:
+      0 6px 20px rgba(198,161,91,0.45),
+      inset 0 0 12px rgba(0,0,0,0.3),
+      0 0 24px rgba(255, 255, 255, 0.25);
+  }
+}
+
+.envelope-intro.opened .envelope-seal {
+  animation: none;
+  transform: translate(-50%, -50%) scale(0) rotate(360deg);
+  opacity: 0;
+  box-shadow:
+    0 0 80px rgba(255, 255, 255, 0.9),
+    0 0 120px rgba(198, 161, 91, 0.6);
+}
+
+.seal-initials {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #4A3618;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.seal-initials .amp {
+  font-style: normal;
+  font-size: 0.85rem;
+  margin: 0 0.1em;
+}
+
+/* =====================================================
+   HINT TEXT
+===================================================== */
+
+.envelope-hint {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--color-champagne);
+  opacity: 0;
+  text-transform: uppercase;
+  animation:
+    hint-fade-in 1.4s var(--ease-out) 1s forwards,
+    hint-pulse 2.4s ease-in-out 2.4s infinite;
+  transition: opacity 0.5s var(--ease-out) 1.6s;
+}
+
+@keyframes hint-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 0.75; transform: translateY(0); }
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.9; }
+}
+
+.envelope-intro.opened .envelope-hint {
+  opacity: 0;
+  animation: none;
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope,
+  .envelope-letter,
+  .envelope-flap,
+  .envelope-seal,
+  .envelope-hint,
+  .envelope-scene,
+  .envelope-intro::after {
+    animation: none;
+    transition: none;
+  }
+  .envelope-scene { opacity: 1; }
+  .letter-content { opacity: 1; }
+  .envelope-hint { opacity: 0.75; }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+  .envelope {
+    width: 88vw;
+  }
+  .envelope-seal {
+    width: 52px;
+    height: 52px;
+  }
+  .seal-initials { font-size: 0.9rem; }
+  .letter-names { font-size: 1.1rem; }
+
+  .envelope-intro::after {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+
 
 /* -----------------------------------------------------
    6. NAVIGATION

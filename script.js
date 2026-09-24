@@ -39,25 +39,72 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 /* -----------------------------------------------------
    1. LOADING SCREEN
 ----------------------------------------------------- */
-function initLoader() {
-  const loader = document.getElementById("loading-screen");
-  if (!loader) return;
+// function initLoader() {
+//   const loader = document.getElementById("loading-screen");
+//   if (!loader) return;
 
-  const hideLoader = () => {
-    loader.classList.add("loaded");
-    // Remove from accessibility tree / tab order once hidden
-    setTimeout(() => loader.setAttribute("aria-hidden", "true"), 800);
+//   const hideLoader = () => {
+//     loader.classList.add("loaded");
+//     // Remove from accessibility tree / tab order once hidden
+//     setTimeout(() => loader.setAttribute("aria-hidden", "true"), 800);
+//   };
+
+//   if (document.readyState === "complete") {
+//     setTimeout(hideLoader, 400);
+//   } else {
+//     window.addEventListener("load", () => setTimeout(hideLoader, 400));
+//   }
+
+//   // Safety net: never let the loader block the site for more than 4s
+//   setTimeout(hideLoader, 4000);
+// }
+
+
+/* -----------------------------------------------------
+   1. ENVELOPE INTRO
+----------------------------------------------------- */
+function initEnvelopeIntro() {
+  const envelope = document.getElementById("envelope-intro");
+  if (!envelope) return;
+
+  document.body.style.overflow = "hidden";
+
+  let opened = false;
+
+  const openEnvelope = () => {
+    if (opened) return;
+    opened = true;
+
+    envelope.classList.add("opened");
+
+    // Total: ~4s
+    // Flap: 0-1.6s
+    // Letter slide: 1.6-3s
+    // Letter fade: 2.8-4s
+    // Envelope fade out: 2.8-4s
+    setTimeout(() => {
+      document.body.style.overflow = "";
+    }, 3200);
+
+    setTimeout(() => {
+      envelope.remove();
+    }, 4400);
   };
 
-  if (document.readyState === "complete") {
-    setTimeout(hideLoader, 400);
-  } else {
-    window.addEventListener("load", () => setTimeout(hideLoader, 400));
-  }
+  envelope.addEventListener("click", openEnvelope);
 
-  // Safety net: never let the loader block the site for more than 4s
-  setTimeout(hideLoader, 4000);
+  envelope.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openEnvelope();
+    }
+  });
+
+  setTimeout(() => {
+    if (!opened) openEnvelope();
+  }, 12000);
 }
+
 
 /* -----------------------------------------------------
    2. NAVIGATION (scroll header, mobile menu, active link)
@@ -425,7 +472,8 @@ function applyConfigToDOM() {
    9. INIT
 ----------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  initLoader();
+  // initLoader();
+  initEnvelopeIntro();
   initNavigation();
   initMusic();
   initCountdown();
