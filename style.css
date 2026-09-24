@@ -942,9 +942,28 @@ section { padding: var(--space-2xl) 0; position: relative; }
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
   
-  /* 🆕 IDUGANG NI — tilt */
   transform: rotateX(40deg) rotateZ(-8deg) scale(1.3);
   transform-origin: center;
+  
+  /* 🆕 SCAN ANIMATION */
+  /* animation: blueprint-scan 12s ease-in-out infinite; */
+}
+
+@keyframes blueprint-scan {
+  0%, 100% {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+  50% {
+    background-position:
+      0 100px,
+      100px 0,
+      0 100px,
+      100px 0;
+  }
 }
 
 .hero-blueprint-details {
@@ -956,9 +975,20 @@ section { padding: var(--space-2xl) 0; position: relative; }
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
   
-  /* 🆕 IDUGANG NI — tilt */
   transform: rotateX(40deg) rotateZ(-8deg) scale(1.3);
   transform-origin: center;
+  
+  /* 🆕 SCAN ANIMATION — mo-move pataas/paubos */
+  animation: blueprint-details-scan 14s ease-in-out infinite;
+}
+
+@keyframes blueprint-details-scan {
+  0%, 100% {
+    transform: rotateX(40deg) rotateZ(-8deg) scale(1.3) translate(0, 0);
+  }
+  50% {
+    transform: rotateX(40deg) rotateZ(-8deg) scale(1.3) translate(0, -30px);
+  }
 }
 
 .hero-overlay {

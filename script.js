@@ -19,7 +19,7 @@ const weddingConfig = {
   venueReception: "The Meridian Grand Hall",
   receptionTime: "6:30 PM",
   location: "142 Harborview Road, Cebu City, Philippines",
-  music: "assets/music/wedding-song.mp3",
+  music: "music/tahanan_el_manu.mp3",
   googleForm: "YOUR_GOOGLE_FORM_EMBED_URL_HERE",
   prenupImages: [
     "assets/images/prenup-01.jpg",
